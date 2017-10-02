@@ -2,6 +2,7 @@
 using ProjectDB.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,8 @@ namespace ProjectDB
         const string Command_AssignEmployeeToProject = "9";
         const string Command_RemoveEmployeeFromProject = "10";
         const string Command_Quit = "q";
-        const string DatabaseConnection = "";
+        private string DatabaseConnection = ConfigurationManager.ConnectionStrings["ProjectConnection"].ConnectionString;
+        
 
         public void RunCLI()
         {
