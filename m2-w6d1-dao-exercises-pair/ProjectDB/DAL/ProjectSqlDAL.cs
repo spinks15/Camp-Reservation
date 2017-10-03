@@ -12,9 +12,9 @@ namespace ProjectDB.DAL
     {
         private string connectionString;
         private const string getProjectSql = "select * from project";
-        private const string assignEmployeeToProjectSql = @"insert into project_employee values ('@projectid', '@employeeid')";
-        private const string removeEmployeeFromProjectSql = @"delete project_employee WHERE project_id = '@projectid' AND employee_id = '@employeeid'";
-        private const string createProjectSql = "";
+        private const string assignEmployeeToProjectSql = @"insert into project_employee  values (@project_id, @employee_id);";
+        private const string removeEmployeeFromProjectSql = @"delete project_employee WHERE project_id = @project_id AND employee_id = @employee_id";
+        private const string createProjectSql = @"INSERT INTO project VALUES (@name, @from_date, @to_date)";
 
 
 
@@ -56,11 +56,9 @@ namespace ProjectDB.DAL
                 {
                     conn.Open();
                     SqlCommand command = new SqlCommand(assignEmployeeToProjectSql, conn);
-                    SqlDataReader results = command.ExecuteReader();
-                    command.Parameters.AddWithValue("@projectid", projectId);
-                    command.Parameters.AddWithValue("@employeeid", employeeId);
+                    command.Parameters.AddWithValue( "@project_id", projectId);
+                    command.Parameters.AddWithValue("@employee_id", employeeId);
                     int rowsAffected = command.ExecuteNonQuery();
-
                     return (rowsAffected > 0);
                 }
             }
@@ -79,11 +77,9 @@ namespace ProjectDB.DAL
                 {
                     conn.Open();
                     SqlCommand command = new SqlCommand(removeEmployeeFromProjectSql, conn);
-                    SqlDataReader results = command.ExecuteReader();
-                    command.Parameters.AddWithValue("@projectid", projectId);
-                    command.Parameters.AddWithValue("@employeeid", employeeId);
+                    command.Parameters.AddWithValue("@project_id", projectId);
+                    command.Parameters.AddWithValue("@employee_id", employeeId);
                     int rowsAffected = command.ExecuteNonQuery();
-
                     return (rowsAffected > 0);
                 }
             }
@@ -103,8 +99,8 @@ namespace ProjectDB.DAL
                     conn.Open();
                     SqlCommand command = new SqlCommand(createProjectSql, conn);
                     command.Parameters.AddWithValue("@name", newProject.Name);
-                    command.Parameters.AddWithValue("@name", newProject.Name);
-                    command.Parameters.AddWithValue("@name", newProject.Name);
+                    command.Parameters.AddWithValue("@from_date", newProject.StartDate);
+                    command.Parameters.AddWithValue("@to_date", newProject.EndDate);
                     int rowsAffected = command.ExecuteNonQuery();
 
                     return (rowsAffected > 0);
