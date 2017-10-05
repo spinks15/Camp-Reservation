@@ -10,11 +10,16 @@ namespace ProjectDB.DAL
 {
     public class DepartmentSqlDAL
     {
+<<<<<<< HEAD
         private const string getDepartmentsSql = "select * from department";
         private const string createDepartmentSql = @"insert into department VALUES (@name);";
         private const string updateDepartmentSql = @"update department set name=@newname where (department_id=@olddeptnumber);";
 
         
+=======
+
+        private const string getDepartmentsSql = "select * from department";
+>>>>>>> f352e0e3bc069be361bcacae1573423e0ce7ebdb
         private string connectionString;
 
         // Single Parameter Constructor
@@ -31,6 +36,7 @@ namespace ProjectDB.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+<<<<<<< HEAD
                     SqlCommand command = new SqlCommand(getDepartmentsSql, conn);
                     SqlDataReader results = command.ExecuteReader();
                     while (results.Read())
@@ -43,6 +49,24 @@ namespace ProjectDB.DAL
             {
                 throw;
             }
+=======
+
+                    SqlCommand command = new SqlCommand(getDepartmentsSql, conn);
+                    SqlDataReader results = command.ExecuteReader();
+
+                    while(results.Read())
+                    {
+                        departments.Add(CreateDepartmentFromRow(results));
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+>>>>>>> f352e0e3bc069be361bcacae1573423e0ce7ebdb
             return departments;
         }
 
@@ -100,5 +124,9 @@ namespace ProjectDB.DAL
             dept.Name = Convert.ToString(results["name"]);
             return dept;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f352e0e3bc069be361bcacae1573423e0ce7ebdb
     }
 }
