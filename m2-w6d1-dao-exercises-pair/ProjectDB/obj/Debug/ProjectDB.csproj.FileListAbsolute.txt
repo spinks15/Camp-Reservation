@@ -1,13 +1,25 @@
 D:\TechElevator\Module 2\dao-lecture\exercises\csharp\dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe.config
+<<<<<<< HEAD
 C:\Users\jstephens\TEPairGroups\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe.config
 C:\Users\jstephens\TEPairGroups\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe
 C:\Users\jstephens\TEPairGroups\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.pdb
 C:\Users\jstephens\TEPairGroups\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.csprojResolveAssemblyReference.cache
 C:\Users\jstephens\TEPairGroups\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.exe
 C:\Users\jstephens\TEPairGroups\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.pdb
+<<<<<<< HEAD
 C:\Users\cspinks\Cams Tech Elevator\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe.config
 C:\Users\cspinks\Cams Tech Elevator\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe
 C:\Users\cspinks\Cams Tech Elevator\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.pdb
 C:\Users\cspinks\Cams Tech Elevator\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.csprojResolveAssemblyReference.cache
 C:\Users\cspinks\Cams Tech Elevator\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.exe
 C:\Users\cspinks\Cams Tech Elevator\team1-c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.pdb
+=======
+=======
+C:\Users\brian\Documents\TechElevator\Cohort 3\c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe.config
+C:\Users\brian\Documents\TechElevator\Cohort 3\c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.exe
+C:\Users\brian\Documents\TechElevator\Cohort 3\c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\bin\Debug\ProjectDB.pdb
+C:\Users\brian\Documents\TechElevator\Cohort 3\c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.csprojResolveAssemblyReference.cache
+C:\Users\brian\Documents\TechElevator\Cohort 3\c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.exe
+C:\Users\brian\Documents\TechElevator\Cohort 3\c-week6-pair-exercises\m2-w6d1-dao-exercises-pair\ProjectDB\obj\Debug\ProjectDB.pdb
+>>>>>>> f352e0e3bc069be361bcacae1573423e0ce7ebdb
+>>>>>>> f08321300627d06ea935948d180a484efa7d995f
