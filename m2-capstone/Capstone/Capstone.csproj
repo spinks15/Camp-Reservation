@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CLIHelper.cs" />
     <Compile Include="Interfaces\IDatasource.cs" />
     <Compile Include="Classes\DAL\ReservationDAL.cs" />
     <Compile Include="Classes\DAL\ParkDAL.cs" />

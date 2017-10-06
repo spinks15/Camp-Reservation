@@ -8,7 +8,7 @@ namespace Capstone.Models
 {
     public class Park
     {
-        private int site_id;
+        private int parkId;
         private string name;
         private string location;
         private DateTime establishedDate;
@@ -16,7 +16,7 @@ namespace Capstone.Models
         private int visitors;
         private string description;
 
-        public int Site_id { get => site_id; set => site_id = value; }
+        public int ParkId { get => parkId; set => parkId = value; }
         public string Name { get => name; set => name = value; }
         public string Location { get => location; set => location = value; }
         public DateTime EstablishedDate { get => establishedDate; set => establishedDate = value; }
@@ -24,9 +24,9 @@ namespace Capstone.Models
         public int Visitors { get => visitors; set => visitors = value; }
         public string Descriptions { get => description; set => description = value; }
 
-        public Park(int site_id, string name, string location, DateTime establishedDate, int area, int visitors, string description)
+        public Park(int parkId, string name, string location, DateTime establishedDate, int area, int visitors, string description)
         {
-            this.site_id = site_id;
+            this.parkId = parkId;
             this.name = name;
             this.location = location;
             this.establishedDate = establishedDate;
@@ -37,7 +37,7 @@ namespace Capstone.Models
 
         public override string ToString()
         {
-            return Site_id.ToString().PadRight(6) + Name.ToString().PadRight(15) + Location.ToString().PadRight(10) + establishedDate.ToString().PadRight(25)+ Area.ToString().PadRight(10)+visitors.ToString().PadRight(10)+description.ToString();
+            return parkId.ToString().PadRight(5) + Name.ToString().PadRight(5) + Location.ToString().PadRight(10) + establishedDate.ToString().PadRight(25)+ Area.ToString().PadRight(10)+visitors.ToString().PadRight(10)+description.ToString();
         }
     }
 }

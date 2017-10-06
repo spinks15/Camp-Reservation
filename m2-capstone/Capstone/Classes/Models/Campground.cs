@@ -8,25 +8,33 @@ namespace Capstone.Models
 {
     public class Campground
     {
-        //private int site_id;
-        //private string name;
-        //private string location;
-        //private DateTime establishedDate;
-        //private int area;
-        //private int visitors;
-        //private string descriptions;
+        private int campgroundId;
+        private int parkId;
+        private string name;
+        private int openFrom;
+        private int openTo;
+        private int dailyFee;
 
-        //public int Site_id { get => site_id; set => site_id = value; }
-        //public string Name { get => name; set => name = value; }
-        //public string Location { get => location; set => location = value; }
-        //public DateTime EstablishedDate { get => establishedDate; set => establishedDate = value; }
-        //public int Area { get => area; set => area = value; }
-        //public int Visitors { get => visitors; set => visitors = value; }
-        //public string Descriptions { get => descriptions; set => descriptions = value; }
+        public int CampgroundId { get => campgroundId; set => campgroundId = value; }
+        public int ParkId { get => parkId; set => parkId = value; }
+        public string Name { get => name; set => name = value; }
+        public int OpenFrom { get => openFrom; set => openFrom = value;}
+        public int OpenTo { get => openTo; set => openTo = value; }
+        public int DailyFee { get => dailyFee; set => dailyFee = value; }
 
-        //public override string ToString()
-        //{
-        //    return Site_id.ToString().PadRight(6) + Name.ToString().PadRight(30) + Location.ToString().PadRight(30) + establishedDate.ToString().PadRight(10)+ Area.ToString().PadRight(10)+visitors.ToString().PadRight(10)+descriptions.ToString().PadRight(50);
-        //}
+        public Campground(int campgroundId, int parkId, string name, int openFrom, int openTo, int dailyFee)
+        {
+            this.CampgroundId = campgroundId;
+            this.ParkId = parkId;
+            this.Name = name;
+            this.OpenFrom = openFrom;
+            this.OpenTo = openTo;
+            this.DailyFee = dailyFee;
+        }
+
+        public override string ToString()
+        {
+            return campgroundId.ToString().PadRight(6) + name.ToString().PadRight(10) + openFrom.ToString().PadRight(30) + openTo.ToString().PadRight(10) + (dailyFee / 100.0).ToString("C2").PadRight(10);
+        }
     }
 }
