@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CLIHelper.cs" />
+    <Compile Include="Classes\DAL\SiteDAL.cs" />
+    <Compile Include="Classes\Models\Site.cs" />
     <Compile Include="Interfaces\IDatasource.cs" />
     <Compile Include="Classes\DAL\ReservationDAL.cs" />
     <Compile Include="Classes\DAL\ParkDAL.cs" />
@@ -53,7 +55,6 @@
     <Compile Include="Classes\Models\Park.cs" />
     <Compile Include="Classes\Models\Reservation.cs" />
     <Compile Include="Classes\ReservationSystemCLI.cs" />
-    <Compile Include="Classes\ReservationSystem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

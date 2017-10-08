@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 using Capstone.Models;
 using Capstone.DAL;
 using Capstone;
+using Capstone.Classes.DAL;
 
 namespace Capstone.Classes
 {
     class ReservationSystemCLI
     {
-        private const string Option_DisplayAllParks = "1";
-        private const string Option_DisplayAllCampgrounds = "2";
-        private const string Option_Quit = "0";
-        private ReservationSystem rs;
+
+        private string connectionString;
+
         List<Park> pk = new List<Park>();
         List<Campground> cg = new List<Campground>();
 
-        public ReservationSystemCLI(ReservationSystem rs)
+        public ReservationSystemCLI(string connectionString)
         {
-            this.rs = rs;
+            this.connectionString = connectionString;
         }
         public void Run()
         {
@@ -41,15 +41,12 @@ namespace Capstone.Classes
                         if (choice == "1")  //view campgrounds at user chosen park
                         {
                             ParkCampgroundMenu(userInput);
-                            choice = Console.ReadLine().ToLower();
-                            userInput = Convert.ToInt32(choice);
+                            int campgroundChoice = CLIHelper.GetInteger("") - 1;  //-1 to turn choice into index
+                            MakeReservationMenu(campgroundChoice);
+
 
                         }
-                        if (choice != "q")
-                        {
-                            ParkCampgroundReservationMenu(userInput);
-                            int campgroundChoice = Convert.ToInt32(Console.ReadLine());
-                        }
+
 
                     }
                 }
@@ -64,7 +61,7 @@ namespace Capstone.Classes
             Console.Clear();
             Console.WriteLine("Welcome to the National Park Campsite Reservation");
             Console.WriteLine("Please select a park below for more information");
-            ParkDAL park = new ParkDAL(rs.ConnectionString);
+            ParkDAL park = new ParkDAL(connectionString);
             pk = park.GetParks();
             foreach (Park p in pk)
             {
@@ -97,7 +94,7 @@ namespace Capstone.Classes
             Console.WriteLine("Park Campgrounds");
             Console.WriteLine(pk[parkIndex].Name + " National Park Campgrounds");
             Console.WriteLine("".PadRight(5) + "Name".PadRight(35) + "Open".PadRight(12) + "Close".PadRight(12) + "Daily Fee");
-            CampgroundDAL camp = new CampgroundDAL(rs.ConnectionString);
+            CampgroundDAL camp = new CampgroundDAL(connectionString);
             cg = camp.GetThisParksCampgrounds(userInput);
             foreach (Campground c in cg)
             {
@@ -120,8 +117,31 @@ namespace Capstone.Classes
             }
             Console.WriteLine();
             Console.Write("  Which campground (enter (Q) to cancel)?  ");
-            
+
         }
+        public void MakeReservationMenu(int campgroundChoice)
+        {
+
+
+            string startDate = "";
+            string endDate = "";
+
+            startDate = CLIHelper.GetString("What day do you plan to arrive?  mm/dd/yyyy ");
+            if (!DateTime.TryParse(startDate, out DateTime startResult))
+            {
+                Console.WriteLine("\nThat is not an acceptable Date format");
+            }
+            endDate = CLIHelper.GetString("What day do you plan to checkout?  mm/dd/yyyy ");
+            if (!DateTime.TryParse(endDate, out DateTime endResult))
+            {
+                Console.WriteLine("\nThat is not an acceptable Date format");
+            }
+            SiteDAL siteDAL = new SiteDAL(connectionString);
+
+
+
+        }
+
 
     }
 

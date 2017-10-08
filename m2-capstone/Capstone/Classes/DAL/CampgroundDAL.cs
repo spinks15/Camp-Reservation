@@ -36,7 +36,7 @@ namespace Capstone.DAL
                         string name = Convert.ToString(reader["name"]);
                         int openFrom = Convert.ToInt32(reader["open_from_mm"]);
                         int openTo = Convert.ToInt32(reader["open_to_mm"]);
-                        int dailyFee = 100 * Convert.ToInt32(reader["daily_fee"]); 
+                        int dailyFee = 100 * Convert.ToInt32(reader["daily_fee"]);   //converting to pennies
 
                         output.Add(new Campground(slotid, thisPark, name, openFrom, openTo, dailyFee));
                     }

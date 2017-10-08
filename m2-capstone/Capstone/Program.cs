@@ -21,20 +21,8 @@ namespace Capstone
             //IDatasource campgroundDatabaseSource = new IDatasource(connectionString);
             //IDataSource datasource = new SqlServerDataSource();
 
-            ReservationSystem rs;
-
-            try
-            {
-                rs = new ReservationSystem(connectionString);
-            }
-            catch
-            {
-                Console.WriteLine();
-                Console.WriteLine("An error has occurred in starting the campground reservation system.  The program will now close.");
-                return;
-            }
-
-            ReservationSystemCLI cli = new ReservationSystemCLI(rs);
+                   
+            ReservationSystemCLI cli = new ReservationSystemCLI(connectionString);
             cli.Run();
         }
     }
