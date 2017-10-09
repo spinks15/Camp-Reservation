@@ -14,7 +14,7 @@ namespace Capstone.DAL
             this.connectionString = connectionString;
         }
 
-        public List<Park> GetParks()
+        public List<Park> GetParksSQL()
         {
             List<Park> output = new List <Park>();
 

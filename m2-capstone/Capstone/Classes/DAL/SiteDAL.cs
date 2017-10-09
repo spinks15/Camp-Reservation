@@ -17,7 +17,7 @@ namespace Capstone.Classes.DAL
             this.connectionString = connectionString;
         }
 
-        public List<Site> GetSitesFreeInCampground(string campgroundIndex, string arrivalDate, string departDate)
+        public List<Site> GetSitesFreeInCampground(string campgroundName, string arrivalDate, string departDate)
         {
             List<Site> output = new List<Site>();
 
@@ -28,17 +28,13 @@ namespace Capstone.Classes.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(@"SELECT TOP 5 * FROM site " +
-                                                    "INNER JOIN campground ON site.campground_id = campground.campground_id " +
-                                                    "WHERE campground.name = 'Blackwoods' AND site_id NOT IN " +
+                    SqlCommand cmd = new SqlCommand(@"SELECT * FROM site " +
+                                                    "JOIN campground ON site.campground_id = campground.campground_id " +
+                                                    "WHERE campground.name LIKE @campgroundName AND site_id NOT IN " +
                                                     "(SELECT site_id FROM reservation WHERE " +
-                                                    "from_date BETWEEN '06/06/2017' AND '06/08/2017' OR " +
-                                                    "to_date BETWEEN '06/06/2017' AND '06/08/2017' OR " +
-                                                    "(from_date BETWEEN '06/06/2017' AND '06/08/2017' AND to_date BETWEEN '06/06/2017' AND '06/08/2017') " +
-                                                    "OR from_date< '06/06/2017' AND to_date > '06/08/2017');", conn);
-
-                   
-                    cmd.Parameters.AddWithValue("@campgroundName", campgroundIndex);
+                                                    "from_date <= @arrivalDate AND to_date >= @departDate)", conn);
+                                                                                          
+                    cmd.Parameters.AddWithValue("@campgroundName", campgroundName);
                     cmd.Parameters.AddWithValue("@arrivalDate", arrivalDate);
                     cmd.Parameters.AddWithValue("@departDate", departDate);
 
@@ -47,7 +43,16 @@ namespace Capstone.Classes.DAL
 
                     while (reader.Read())
                     {
-                        output.Add(PopulateSite(reader));
+                        Site s = new Site();
+                        s.SiteId = (int)reader["site_id"];
+                        s.CampgroundId = (int)reader["campground_id"];
+                        s.SiteNumber = (int)reader["site_number"];
+                        s.MaxOccupancy = (int)reader["max_occupancy"];
+                        s.HandicapAccessible = (bool)reader["accessible"];
+                        s.MaxRVLength = (int)reader["max_rv_length"];
+                        s.HasUtilities = (bool)reader["utilities"];
+                        output.Add(s);
+
                     }
                 }
             }

@@ -16,17 +16,6 @@ namespace Capstone.Classes.Models
         private int maxRVLength;
         private bool hasUtilities;
 
-        public Site(int siteId, int campgroundId, int siteNumber, int maxOccupancy, bool handicapAccessible, int maxRVLength, bool hasUtilities)
-        {
-            this.siteId = siteId;
-            this.campgroundId = campgroundId;
-            this.siteNumber = siteNumber;
-            this.maxOccupancy = maxOccupancy;
-            this.handicapAccessible = handicapAccessible;
-            this.maxRVLength = maxRVLength;
-            this.hasUtilities = hasUtilities;
-        }
-
         public int SiteId { get => siteId; set => siteId = value; }
         public int CampgroundId { get => campgroundId; set => campgroundId = value; }
         public int SiteNumber { get => siteNumber; set => siteNumber = value; }

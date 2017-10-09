@@ -17,7 +17,7 @@ namespace Capstone.DAL
             this.connectionString = connectionString;
         }
 
-        public List<Campground> GetThisParksCampgrounds(int thisPark)
+        public List<Campground> GetThisParksCampgrounds(string thisParkName)
         {
             List<Campground> output = new List<Campground>();
 
@@ -27,18 +27,20 @@ namespace Capstone.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(@"SELECT campground_id, name, open_from_mm, open_to_mm, daily_fee FROM campground WHERE(park_id = @thisPark) ORDER BY name", conn);
-                    cmd.Parameters.AddWithValue("@thisPark", thisPark);
+                    SqlCommand cmd = new SqlCommand(@"SELECT campground_id, campground.park_id, campground.name, open_from_mm, open_to_mm, daily_fee FROM campground join park on campground.park_id=park.park_id "+
+                                                    "WHERE park.name = @thisParkName ORDER BY campground.name", conn);
+                    cmd.Parameters.AddWithValue("@thisParkName", thisParkName);
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        int slotid = Convert.ToInt32(reader["campground_id"]);
-                        string name = Convert.ToString(reader["name"]);
+                        int campgroundId = Convert.ToInt32(reader["campground_id"]);
+                        int parkId = Convert.ToInt32(reader["park_id"]);
+                        string campgroundName = Convert.ToString(reader["name"]);
                         int openFrom = Convert.ToInt32(reader["open_from_mm"]);
                         int openTo = Convert.ToInt32(reader["open_to_mm"]);
                         int dailyFee = 100 * Convert.ToInt32(reader["daily_fee"]);   //converting to pennies
 
-                        output.Add(new Campground(slotid, thisPark, name, openFrom, openTo, dailyFee));
+                        output.Add(new Campground(campgroundId, parkId, campgroundName, openFrom, openTo, dailyFee));
                     }
                 }
             }

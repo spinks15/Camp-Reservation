@@ -17,45 +17,36 @@ namespace Capstone.DAL
             this.connectionString = connectionString;
         }
 
-       
-        //public List<Reservation> GetParks()
-        //{
-        //    List<Reservation> output = new List<Reservation>();
+        internal int CreateNewReservation(string reservationName, string startDate, string endDate, int siteNumber)
+        {
+            int reservationId = 0;
 
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(connectionString))
-        //        {
-        //            conn.Open();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
-        //            SqlCommand cmd = new SqlCommand("SELECT * FROM reservation", conn);
-        //            SqlDataReader reader = cmd.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                int reservationId = Convert.ToInt32(reader["reservation_id"]);
-        //                int siteId = Convert.ToInt32(reader["site_id"]);
-        //                string name = Convert.ToString(reader["name"]);
-        //                DateTime fromDate = Convert.ToDateTime(reader["from_date"]);
-        //                DateTime toDate = Convert.ToDateTime(reader["to_date"]);
-        //                DateTime createDate = Convert.ToDateTime(reader["create_date"]);
-        //                siteId = Convert.ToInt32(reader["site_id"]);
-        //                int campgroundId = Convert.ToInt32(reader["campground_id"]);
-        //                int siteNumber = Convert.ToInt32(reader["site_number"]);
-        //                int maxOccupancy = Convert.ToInt32(reader["max_occupancy"]);
-        //                bool accessible = Convert.ToBoolean(reader["accessible"]);
-        //                int maxRvLength = Convert.ToInt32(reader["max_rv_length"]);
-        //                bool utilities = Convert.ToBoolean(reader["utilites"]);
-        //                output.Add(new Reservation(reservationId, siteId, name, fromDate, toDate, createDate, campgroundId, siteNumber, maxOccupancy, accessible, maxRvLength, utilities));
-        //            }
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        Console.WriteLine("An error occurred reading the park table. " + ex.Message);
-        //        throw ex;
-        //    }
+                    SqlCommand cmd = new SqlCommand(@"INSERT into reservation (site_id, name, from_date, to_date) VALUES (@siteNumber, @reservationName, @startDate, @endDate)", conn);
+                    cmd.Parameters.AddWithValue("@siteNumber", siteNumber);
+                    cmd.Parameters.AddWithValue("@reservationName", reservationName);
+                    cmd.Parameters.AddWithValue("@startDate", startDate);
+                    cmd.Parameters.AddWithValue("@endDate", endDate);
 
-        //    return output;
-        //}
+                    cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand("SELECT MAX(reservation_id) FROM reservation;", conn);
+                    reservationId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("An error occurred. " + e.Message);
+                throw;
+            }
+            return reservationId;
+        }
+
+
     }
 }

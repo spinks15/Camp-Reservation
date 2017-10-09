@@ -14,14 +14,8 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            // Sample Code to get a connection string from the
-            // App.Config file
-            // Use this so that you don't need to copy your connection string all over your code!
-            string connectionString = ConfigurationManager.ConnectionStrings["CapstoneDatabase"].ConnectionString;
-            //IDatasource campgroundDatabaseSource = new IDatasource(connectionString);
-            //IDataSource datasource = new SqlServerDataSource();
-
-                   
+            
+            string connectionString = ConfigurationManager.ConnectionStrings["CapstoneDatabase"].ConnectionString;                     
             ReservationSystemCLI cli = new ReservationSystemCLI(connectionString);
             cli.Run();
         }
